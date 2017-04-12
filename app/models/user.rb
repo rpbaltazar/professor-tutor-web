@@ -23,10 +23,10 @@ class User < ApplicationRecord
   end
 
   def is_professor?
-    type == TYPE[:professor]
+    type == TYPES[:professor]
   end
 
   def is_student?
-    type == TYPE[:student]
+    type == TYPES[:student]
   end
 end
