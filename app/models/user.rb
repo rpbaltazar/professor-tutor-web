@@ -4,6 +4,11 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  TYPES = {
+    professor: "Professor",
+    student: "Student"
+  }
+
   validates_presence_of :first_name, :last_name
 
   before_create do |user|
@@ -15,5 +20,13 @@ class User < ApplicationRecord
       token = SecureRandom.base64.tr('+/=', 'Qrt')
       break token unless User.exists?(api_key: token)
     end
+  end
+
+  def is_professor?
+    type == TYPE[:professor]
+  end
+
+  def is_student?
+    type == TYPE[:student]
   end
 end
