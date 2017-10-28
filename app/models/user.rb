@@ -5,9 +5,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   TYPES = {
-    professor: "Professor",
-    student: "Student"
-  }
+    professor: 'Professor',
+    student: 'Student'
+  }.freeze
 
   validates_presence_of :first_name, :last_name
 
@@ -22,11 +22,11 @@ class User < ApplicationRecord
     end
   end
 
-  def is_professor?
+  def professor?
     type == TYPES[:professor]
   end
 
-  def is_student?
+  def student?
     type == TYPES[:student]
   end
 end

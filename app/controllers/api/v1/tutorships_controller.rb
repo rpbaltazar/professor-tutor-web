@@ -8,7 +8,7 @@ module Api::V1
     #   - user id
     #   - display name
     def index
-      if @current_user.is_professor?
+      if @current_user.professor?
         render json: @current_user.students
       else
         render json: @current_user.professor
