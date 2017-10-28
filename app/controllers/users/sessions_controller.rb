@@ -15,7 +15,7 @@ class Users::SessionsController < Devise::SessionsController
 
     if user.valid_password?(params[:password])
       sign_in('user', user)
-      render json: { api_key: user.api_key }, status: :ok
+      render json: { user_type: user.type, api_key: user.api_key }, status: :ok
       return
     end
     invalid_login_attempt
