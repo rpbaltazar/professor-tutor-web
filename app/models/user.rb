@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  self.store_full_sti_class = false
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -8,6 +9,7 @@ class User < ApplicationRecord
     professor: 'Professor',
     student: 'Student'
   }.freeze
+
 
   validates_presence_of :first_name, :last_name
 

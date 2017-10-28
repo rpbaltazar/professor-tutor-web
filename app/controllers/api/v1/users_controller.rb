@@ -1,8 +1,13 @@
 module Api::V1
   class UsersController < ApiController
-    # TODO: before action, auth user
     def index
-      render json: User.all
+      if @current_user.professor?
+        render json: @current_user.students, status: :ok
+      elsif @current_user.student?
+        render json: @current_user.study_hours, status: :ok
+      else
+        render json: { 'errors': ['Account not set up yet'] }, status: :unprocessable_entity
+      end
     end
 
     def show

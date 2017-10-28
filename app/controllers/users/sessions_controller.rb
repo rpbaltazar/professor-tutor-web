@@ -1,6 +1,5 @@
 class Users::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
-  skip_before_action :authenticate, only: [:create]
   before_action :ensure_params_exist
 
   # GET /resource/sign_in
