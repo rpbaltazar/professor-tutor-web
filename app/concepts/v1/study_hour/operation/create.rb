@@ -1,16 +1,14 @@
 module V1
-  module User
-    class Index < ProfessorTutorWeb::Operation
+  module StudyHour
+    class Create < ProfessorTutorWeb::Operation
       step Policy::Guard(:authorize!, name: :authorize)
       failure :unauthorized!, fail_fast: true
-      step :find_records
-
-      def find_records(options, current_user:, **)
-        options['results'] = current_user.students
-      end
+      step Model(::StudyHour, :new)
+      step Trailblazer::Operation::Contract::Build(constant: StudyHour::Contract::Create)
+      step Trailblazer::Operation::Contract::Validate()
+      step Trailblazer::Operation::Contract::Persist()
 
       def authorize!(current_user:, **)
-        debugger
         current_user.professor?
       end
 

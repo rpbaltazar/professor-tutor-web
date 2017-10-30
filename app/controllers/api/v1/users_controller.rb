@@ -5,15 +5,9 @@ module Api::V1
       if result.success?
         render json: result['results'], status: :ok
       else
-        render json: { 'errors': ['Account not set up yet'] }, status: :unprocessable_entity
+        render json: { 'errors': ['Account not set up yet'] },
+               status: :unprocessable_entity
       end
-      # if @current_user.professor?
-      #   render json: @current_user.students, status: :ok
-      # elsif @current_user.student?
-      #   render json: @current_user.study_hours, status: :ok
-      # else
-      #   render json: { 'errors': ['Account not set up yet'] }, status: :unprocessable_entity
-      # end
     end
 
     def show
