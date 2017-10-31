@@ -3,7 +3,7 @@ module Api::V1
     before_action :find_study_hour, only: [:update, :destroy]
 
     def create
-      result = V1::StudyHour::Create.(params)
+      result = V1::StudyHour::Create.(params, current_user: @current_user)
       if result.success?
         render json: result['model'], status: :ok
       elsif result['result.policy.failure']
