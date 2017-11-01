@@ -10,7 +10,6 @@ module V1
       end
 
       def authorize!(current_user:, **)
-        debugger
         current_user.professor?
       end
 
