@@ -5,9 +5,8 @@ module ProfessorTutorWeb
 
     protected
 
-    def authenticate!(options, **)
-      return false unless @current_user
-      options['current_user'] = @current_user
+    def authenticate!(current_user:, **)
+      current_user.present?
     end
 
     def unauthenticated!(options, **)

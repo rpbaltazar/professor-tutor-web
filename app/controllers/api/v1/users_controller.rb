@@ -1,7 +1,7 @@
 module Api::V1
   class UsersController < ApiController
     def index
-      result = V1::User::Index.(params)
+      result = V1::User::Index.(params, current_user: @current_user)
       if result.success?
         render json: result['results'], status: :ok
       else
