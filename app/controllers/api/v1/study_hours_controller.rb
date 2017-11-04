@@ -1,5 +1,17 @@
 module Api::V1
   class StudyHoursController < ApiController
+    # NOTE: API endpoint for student to get all his study hours.
+    # By default will return today's study hours.
+    # It accepts a param for getting the specific date
+    def index
+      result = V1::StudyHour::Index.(params, current_user: @current_user)
+      if result.success?
+        render json: result['results'], status: :ok
+      else
+        render json: { 'errors': [] }, status: :unauthorized
+      end
+    end
+
     # NOTE: API endpoint for professor to create a study hour
     # for one of his students
     def create
