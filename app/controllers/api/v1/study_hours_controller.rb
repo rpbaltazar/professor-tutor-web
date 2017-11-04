@@ -28,23 +28,21 @@ module Api::V1
       else
         render json: {
           'errors': result['contract.default'].errors.full_messages
-        }, status: :unauthorized
+        }, status: :unprocessable_entity
       end
     end
 
     # NOTE: API endpoint for professor to delete
     # a study hour for one of his students
     def destroy
-      if @study_hour
-        if @study_hour.destroy
-          render json: @study_hour.id
-        else
-          render json: { error: @study_hour.errors.full_messages },
-                 status: :unprocesseable_entity
-        end
+      result = V1::StudyHour::Destroy.(params, current_user: @current_user)
+      if result.success?
+        render json: result['model'].id, status: :ok
+      elsif result['result.policy.failure']
+        render json: { 'errors': [] }, status: :unauthorized
       else
-        render json: { error: 'There is no such record' },
-               status: :unprocesseable_entity
+        errors = result['model']&.errors&.full_messages || result['result.model']
+        render json: { 'errors': errors }, status: :unprocessable_entity
       end
     end
 
