@@ -1,7 +1,5 @@
 module Api::V1
   class StudyHoursController < ApiController
-    before_action :find_study_hour, only: [:destroy]
-
     # NOTE: API endpoint for professor to create a study hour
     # for one of his students
     def create
@@ -54,17 +52,6 @@ module Api::V1
     # NOTE: API endpoint for student to mark the study hour
     # as finished
     def mark_as_finished
-    end
-
-    private
-
-    def find_study_hour
-      @study_hour = StudyHour.find_by(id: params[:id])
-    end
-
-    def study_hour_params
-      params.require(:study_hour)
-            .permit(%i[start_time end_time description user_id])
     end
   end
 end
