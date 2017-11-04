@@ -1,6 +1,16 @@
 module Api::V1
   class StudyHoursController < ApiController
-    before_action :find_study_hour, only: [:destroy]
+    # NOTE: API endpoint for student to get all his study hours.
+    # By default will return today's study hours.
+    # It accepts a param for getting the specific date
+    def index
+      result = V1::StudyHour::Index.(params, current_user: @current_user)
+      if result.success?
+        render json: result['results'], status: :ok
+      else
+        render json: { 'errors': [] }, status: :unauthorized
+      end
+    end
 
     # NOTE: API endpoint for professor to create a study hour
     # for one of his students
@@ -49,22 +59,31 @@ module Api::V1
     # NOTE: API endpoint for student to mark the study hour
     # as started
     def mark_as_started
+      result = V1::StudyHour::MarkAsStarted.(params, current_user: @current_user)
+      if result.success?
+        render json: result['model'], status: :ok
+      elsif result['result.policy.failure']
+        render json: { 'errors': [] }, status: :unauthorized
+      else
+        render json: {
+          'errors': result['model'].errors.full_messages
+        }, status: :unprocessable_entity
+      end
     end
 
     # NOTE: API endpoint for student to mark the study hour
     # as finished
     def mark_as_finished
-    end
-
-    private
-
-    def find_study_hour
-      @study_hour = StudyHour.find_by(id: params[:id])
-    end
-
-    def study_hour_params
-      params.require(:study_hour)
-            .permit(%i[start_time end_time description user_id])
+      result = V1::StudyHour::MarkAsFinished.(params, current_user: @current_user)
+      if result.success?
+        render json: result['model'], status: :ok
+      elsif result['result.policy.failure']
+        render json: { 'errors': [] }, status: :unauthorized
+      else
+        render json: {
+          'errors': result['model'].errors.full_messages
+        }, status: :unprocessable_entity
+      end
     end
   end
 end

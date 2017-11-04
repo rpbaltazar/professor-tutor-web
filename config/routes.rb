@@ -9,6 +9,8 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :users
       resources :study_hours
+      post 'study_hours/:id/mark_as_started', to: 'study_hours#mark_as_started'
+      post 'study_hours/:id/mark_as_finished', to: 'study_hours#mark_as_finished'
     end
   end
 end
