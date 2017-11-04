@@ -62,14 +62,14 @@ module Api::V1
     # NOTE: API endpoint for student to mark the study hour
     # as finished
     def mark_as_finished
-      result = V1::StudyHour::MarkAsStarted.(params, current_user: @current_user)
+      result = V1::StudyHour::MarkAsFinished.(params, current_user: @current_user)
       if result.success?
         render json: result['model'], status: :ok
       elsif result['result.policy.failure']
         render json: { 'errors': [] }, status: :unauthorized
       else
         render json: {
-          'errors': result['contract.default'].errors.full_messages
+          'errors': result['model'].errors.full_messages
         }, status: :unprocessable_entity
       end
     end
