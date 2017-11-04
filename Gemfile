@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 source 'https://rubygems.org'
 
 git_source(:github) do |repo_name|
@@ -9,6 +7,7 @@ end
 
 gem 'active_model_serializers'
 gem 'devise'
+gem 'ember-cli-rails'
 
 gem 'pg'
 # Use Puma as the app server
