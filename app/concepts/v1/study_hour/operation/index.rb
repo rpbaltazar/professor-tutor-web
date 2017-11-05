@@ -11,7 +11,7 @@ module V1
                else
                  Date.today
                end
-        options['results'] = current_user.study_hours.for_date(date)
+        options['results'] = current_user.study_hours.for_week(date)
       end
 
       def authorize!(current_user:, **)
