@@ -9,7 +9,7 @@ module V1
       failure :study_hour_unstarted!
       step :check_unfinished_model!
       failure :study_hour_finished!
-      step :mark_as_started!
+      step :mark_as_completed!
       step :save!
 
       def model_not_found!(options, **)
@@ -40,7 +40,7 @@ module V1
         model.errors.add(:study_hour, 'is already finished')
       end
 
-      def mark_as_started!(model:, **)
+      def mark_as_completed!(model:, **)
         model.completed_at = DateTime.now
       end
 
