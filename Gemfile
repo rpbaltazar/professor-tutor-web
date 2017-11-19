@@ -9,6 +9,7 @@ end
 
 gem 'active_model_serializers'
 gem 'devise'
+gem 'multi_json'
 
 gem 'pg'
 # Use Puma as the app server

@@ -8,7 +8,7 @@ export class AuthenticationService {
   constructor(private http: Http) { }
 
   login(email: string, password: string) {
-    let mobileApi = 'https://professor-tutor.herokuapp.com/';
+    let mobileApi = 'http://localhost:3000/';
 
     return this.http.post(`${mobileApi}users/sign_in`, { email: email, password: password })
       .map((response: Response) => {

@@ -87,6 +87,7 @@ GEM
     mime-types-data (3.2016.0521)
     mini_portile2 (2.3.0)
     minitest (5.10.3)
+    multi_json (1.12.2)
     nio4r (2.1.0)
     nokogiri (1.8.1)
       mini_portile2 (~> 2.3.0)
@@ -179,6 +180,7 @@ DEPENDENCIES
   byebug
   devise
   listen (~> 3.0.5)
+  multi_json
   pg
   puma (~> 3.0)
   rack-attack

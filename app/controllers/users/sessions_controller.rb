@@ -2,11 +2,6 @@ class Users::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
   before_action :ensure_params_exist
 
-  # GET /resource/sign_in
-  # def new
-  #   super
-  # end
-
   # POST /resource/sign_in
   def create
     user = User.find_for_database_authentication(email: params[:email])
@@ -14,11 +9,7 @@ class Users::SessionsController < Devise::SessionsController
 
     if user.valid_password?(params[:password])
       sign_in('user', user)
-      render json: {
-        id: user.id,
-        user_type: user.type,
-        api_key: user.api_key
-      }, status: :ok
+      render json: ::V1::User::Representer::Full.new(user), status: :ok
       return
     end
     invalid_login_attempt

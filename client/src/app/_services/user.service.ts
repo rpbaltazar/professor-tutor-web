@@ -10,7 +10,7 @@ export class UserService {
 
   getStudents(professor: User): Promise<Array<User>> {
     return new Promise( (resolve, reject) => {
-      let mobileApi = 'https://professor-tutor.herokuapp.com/';
+      let mobileApi = 'http://localhost:3000/';
 
       let headers = new Headers();
       headers.append('Authorization', `Token ${professor.apiKey}`);
@@ -34,7 +34,7 @@ export class UserService {
   }
 
   login(email: string, password: string) {
-    let mobileApi = 'https://professor-tutor.herokuapp.com/';
+    let mobileApi = 'http://localhost:3000/';
 
     return this.http.post(`${mobileApi}users/sign_in`, { email: email, password: password })
       .map((response: Response) => {

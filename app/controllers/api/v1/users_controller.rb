@@ -3,7 +3,7 @@ module Api::V1
     def index
       result = V1::User::Index.(params, current_user: @current_user)
       if result.success?
-        render json: result['results'], status: :ok
+        render json: ::V1::User::Representer::List.new(result['results']), status: :ok
       else
         render json: { 'errors': ['Account not set up yet'] },
                status: :unprocessable_entity
