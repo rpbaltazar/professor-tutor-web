@@ -6,7 +6,7 @@ import { BaseRequestOptions } from '@angular/http';
 import { AppComponent } from './app.component';
 import { routing }        from './app.routing';
 import { AuthGuard } from './_guards/index';
-import { AlertService, AuthenticationService } from './_services/index';
+import { AlertService, AuthenticationService, UserService } from './_services/index';
 import { HomeComponent } from './home/index';
 import { ProfessorHomeComponent } from './professor_home/index';
 import { StudentHomeComponent } from './student_home/index';
@@ -30,6 +30,7 @@ import { LoginComponent } from './login/index';
     AuthGuard,
     AlertService,
     AuthenticationService,
+    UserService,
     BaseRequestOptions],
   bootstrap: [AppComponent]
 })

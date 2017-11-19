@@ -21,7 +21,7 @@ export class AppComponent {
 
   public isHidden() {
     let list = ["/login", "/register"],
-        fullRoute = this.router.location.path();
+        fullRoute = this.router.url
 
     let route = fullRoute.split('?')[0];
 

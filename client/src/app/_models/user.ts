@@ -5,6 +5,7 @@ export class User {
   firstName: string;
   lastName: string;
   userType: string;
+  apiKey: string;
 
   constructor(userJSON:any) {
     this.id = userJSON.id;
@@ -12,6 +13,7 @@ export class User {
     this.lastName = userJSON.last_name;
     this.email = userJSON.email;
     this.userType = userJSON.user_type;
+    this.apiKey = userJSON.api_key
   }
 
   public isProfessor(): boolean {
