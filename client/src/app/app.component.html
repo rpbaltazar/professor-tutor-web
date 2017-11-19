@@ -1,0 +1,15 @@
+<div [hidden]="isHidden()" class="ui inverted segment">
+  <div class="ui inverted secondary menu">
+    <a class="active item">
+      Home
+    </a>
+    <a class="item">
+      Admin
+    </a>
+    <a class="item" (click)="logout()">
+      Logout
+    </a>
+  </div>
+</div>
+<!-- main app container -->
+<router-outlet></router-outlet>

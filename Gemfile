@@ -15,7 +15,7 @@ gem 'pg'
 gem 'puma', '~> 3.0'
 
 gem 'rack-attack'
-gem 'rack-cors'
+gem 'rack-cors', require: 'rack/cors'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.1'
 gem 'trailblazer-rails'
