@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { AuthenticationService } from './_services/index';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,23 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
+  title = 'Professor Tutor';
+
+  constructor(
+    private router: Router,
+    private authenticationService: AuthenticationService) { }
+
+  logout() {
+    this.authenticationService.logout();
+    this.router.navigate(['/']);
+  }
+
+  public isHidden() {
+    let list = ["/login", "/register"],
+        fullRoute = this.router.location.path();
+
+    let route = fullRoute.split('?')[0];
+
+    return (list.indexOf(route) > -1);
+  }
 }
