@@ -8,13 +8,17 @@ import { routing }        from './app.routing';
 import { AuthGuard } from './_guards/index';
 import { AlertService, AuthenticationService } from './_services/index';
 import { HomeComponent } from './home/index';
+import { ProfessorHomeComponent } from './professor_home/index';
+import { StudentHomeComponent } from './student_home/index';
 import { LoginComponent } from './login/index';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    ProfessorHomeComponent,
+    StudentHomeComponent
   ],
   imports: [
     BrowserModule,
