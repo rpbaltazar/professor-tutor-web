@@ -34,5 +34,8 @@ module ProfessorTutorWeb
     end
 
     config.middleware.use Rack::Attack
+
+    config.time_zone = 'Etc/UTC'
+    config.active_record.default_timezone = :local
   end
 end

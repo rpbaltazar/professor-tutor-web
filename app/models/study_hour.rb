@@ -9,8 +9,13 @@ class StudyHour < ApplicationRecord
   end
 
   def self.for_week(date = Date.today)
-    beginning_of_week = date.to_datetime.beginning_of_week
-    end_of_week = date.to_datetime.end_of_week
+    timezone = Time.zone.name
+    beginning_of_week = date.to_datetime.
+                             in_time_zone(timezone).
+                             beginning_of_week
+    end_of_week = date.to_datetime.
+                       in_time_zone(timezone).
+                       end_of_week
     where('start_time >= ? AND start_time < ?', beginning_of_week, end_of_week)
   end
 end
