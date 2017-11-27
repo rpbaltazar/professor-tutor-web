@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login/index';
 import { HomeComponent } from './home/index';
 import { StudentHomeComponent } from './student_home/index';
+import { Schedule } from './student_schedule/index';
 import { ProfessorHomeComponent } from './professor_home/index';
 import { AuthGuard } from './_guards/index';
 
@@ -11,6 +12,7 @@ const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'my-students', component: ProfessorHomeComponent },
   { path: 'my-schedule', component: StudentHomeComponent },
+  { path: 'users/:id', component: Schedule },
 
   // otherwise redirect to home
   { path: '**', redirectTo: '' }
