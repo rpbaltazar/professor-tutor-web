@@ -12,6 +12,15 @@ module Api::V1
       end
     end
 
+    def show
+      result = V1::StudyHour::Show.(params, current_user: @current_user)
+      if result.success?
+        render json: result['results'], status: :ok
+      else
+        render json: { 'errors': [] }, status: :unauthorized
+      end
+    end
+
     # NOTE: API endpoint for professor to create a study hour
     # for one of his students
     def create
