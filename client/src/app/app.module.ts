@@ -5,7 +5,7 @@ import { HttpModule } from '@angular/http';
 import { BaseRequestOptions } from '@angular/http';
 import { AppComponent } from './app.component';
 import { AuthGuard } from './_guards/index';
-import { AlertService, AuthenticationService, UserService } from './_services/index';
+import { AlertService, AuthenticationService, UserService, StudyHoursService } from './_services/index';
 import { HomeComponent } from './home/index';
 import { ProfessorHomeComponent } from './professor_home/index';
 import { StudentHomeComponent } from './student_home/index';
@@ -33,7 +33,9 @@ import { routing }        from './app.routing';
     AlertService,
     AuthenticationService,
     UserService,
-    BaseRequestOptions],
+    BaseRequestOptions,
+    StudyHoursService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

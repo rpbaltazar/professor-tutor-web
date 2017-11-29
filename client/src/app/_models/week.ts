@@ -1,6 +1,6 @@
 import * as _ from 'lodash';
 import * as moment from 'moment';
-import { Day } from './index';
+import { Day } from './day';
 import { StudyHour } from './study_hour';
 
 export class Week {

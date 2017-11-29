@@ -1,5 +1,5 @@
-import { Week } from './week';
 import { StudyHour } from './study_hour';
+import { Week } from './week';
 import * as _ from 'lodash';
 
 export class Day {
