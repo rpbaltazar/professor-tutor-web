@@ -28,11 +28,18 @@ export class Schedule implements OnInit, OnDestroy {
     this.sub.unsubscribe();
   }
 
-  private loadStudentDetails(){
+  private loadStudentDetails() {
     this.studyHoursService.getStudyHoursForStudent(this.student.id).then(
       studyWeek => {
         this.studyWeek = studyWeek;
       }
     );
+  }
+
+  private newStudyHour() {
+    // TODO:
+    // Open Modal for new study hour;
+    // Save
+    // Reload
   }
 }

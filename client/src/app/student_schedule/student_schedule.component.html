@@ -9,8 +9,19 @@
           {{studyHour.description}}
           {{studyHour.formattedDateTimeInfo()}}
           Duration: {{studyHour.durationInMinutes()}} minutes
+          <span *ngIf="!studyHour.isStarted()">
+            <p> Por começar </p>
+          </span>
+          <span *ngIf="studyHour.isStarted() && !studyHour.isComplete()">
+            <p> A decorrer </p>
+          </span>
+          <span *ngIf="studyHour.isComplete()">
+            <p> Completo </p>
+          </span>
         </li>
       </ul>
     </li>
   </ul>
+
+  <a class="ui fluid large teal submit button" (click)="newStudyHour()">Adicionar Nova Hora</a>
 </div>
