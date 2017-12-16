@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { User } from '../_models/index';
+import { Week } from '../_models/week';
 import { StudyHoursService } from '../_services/index';
 
 @Component({
@@ -10,10 +11,10 @@ import { StudyHoursService } from '../_services/index';
 
 export class Schedule implements OnInit, OnDestroy {
   student: User;
+  studyWeek: Week;
   private sub: any;
 
   constructor(private studyHoursService: StudyHoursService, private route: ActivatedRoute) {
-    console.log('hello');
   }
 
   ngOnInit() {
@@ -29,7 +30,9 @@ export class Schedule implements OnInit, OnDestroy {
 
   private loadStudentDetails(){
     this.studyHoursService.getStudyHoursForStudent(this.student.id).then(
-      student => { this.student = new User(student); }
+      studyWeek => {
+        this.studyWeek = studyWeek;
+      }
     );
   }
 }
